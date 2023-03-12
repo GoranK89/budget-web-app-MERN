@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,15 +12,30 @@ const LoginPage = () => {
     setPassword(e.target.value);
   };
 
+  async function login() {
+    const response = await fetch("http://localhost:8000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      props.setLoggedInStatus(true);
+    }
+  }
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    login();
   };
 
   return (
     <section className="login-section">
       <h1>Budget tracker</h1>
       <form className="login-form" onSubmit={submitHandler}>
-        <input placeholder="Email" type="email" onChange={emailHandler} />
+        <input placeholder="Email" type="text" onChange={emailHandler} />
         <input
           placeholder="Password"
           type="password"
