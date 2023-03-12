@@ -16,9 +16,9 @@ mongoose.connect(DB).then((con) => {
   console.log("Connected to database");
 });
 
-// ROUTING
-const usersRoute = require("./routes/usersRoute");
-app.use("/api/users", usersRoute);
+// ROUTES
+app.use("/api/users", require("./routes/usersRoute"));
+app.use("/api/login", require("./routes/authRoute"));
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
