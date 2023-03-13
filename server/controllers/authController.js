@@ -1,18 +1,15 @@
+const bcrypt = require("bcryptjs");
 const Users = require("../models/usersModel");
 
-// TODO: improve login with jwt & bcrypt
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({ message: "Email and password are required" });
-  }
 
-  const foundUser = await Users.findOne({ email }).exec();
-  if (!foundUser) return res.sendStatus(401);
-  if (password === foundUser.password) {
-    res.json({ message: `User ${foundUser._id} logged in` });
+  const user = await Users.findOne({ email });
+
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.json({ _id: user.id, email: user.email, password: user.password });
   } else {
-    res.status(401).send("Wrong password");
+    res.status(400).json({ message: "Invalid login credentials" });
   }
 };
 
