@@ -1,5 +1,6 @@
 const Users = require("../models/usersModel");
 
+// TODO: improve login with jwt & bcrypt
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {

@@ -1,3 +1,5 @@
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const Users = require("../models/usersModel");
 
 const getUsers = async (req, res) => {
@@ -18,21 +20,37 @@ const getUser = async (req, res) => {
   }
 };
 
-const createUser = async (req, res) => {
-  const user = new Users({
-    email: req.body.email,
-    password: req.body.password,
+const registerUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    res.status(400).json({ message: "No password or email" });
+  }
+
+  const userExists = await Users.findOne({ email });
+  if (userExists) {
+    res.status(400).json({ message: "User with this email already exists" });
+  }
+
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  // Create user
+  const user = await Users.create({
+    email,
+    password: hashedPassword,
   });
 
-  try {
-    const newUser = await user.save();
-    res.status(201).json(newUser);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+  if (user) {
+    res
+      .status(201)
+      .json({ _id: user.id, email: user.email, password: user.password });
+  } else {
+    res.status(400).json({ message: "Could not create new user" });
   }
 };
 
-// NOTE: Remember! req.params.id is for routes, req.body.id is for JSON
 const updateUser = async (req, res) => {
   if (!req?.body.id) {
     return res.status(400).json({ message: "ID parameter is required" });
@@ -71,7 +89,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getUsers,
   getUser,
-  createUser,
+  registerUser,
   updateUser,
   deleteUser,
 };

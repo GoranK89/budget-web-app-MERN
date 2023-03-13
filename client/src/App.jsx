@@ -1,18 +1,17 @@
 import { useState } from "react";
 import LoginPage from "./components/LoginPage";
+import Budget from "./components/Budget";
 const App = () => {
-  const [loggedIn, setLoggedin] = useState(false);
+  const [loggedIn, setLoggedin] = useState(true);
 
   const setLoggedInData = (data) => {
     setLoggedin(data);
   };
+
   return (
     <>
-      {!loggedIn ? (
-        <LoginPage setLoggedInStatus={setLoggedInData} />
-      ) : (
-        <p>You are logged in</p>
-      )}
+      {!loggedIn && <LoginPage setLoggedInStatus={setLoggedInData} />}
+      {loggedIn && <Budget />}
     </>
   );
 };
