@@ -25,11 +25,13 @@ const registerUser = async (req, res) => {
 
   if (!email || !password) {
     res.status(400).json({ message: "No password or email" });
+    return;
   }
 
   const userExists = await Users.findOne({ email });
   if (userExists) {
     res.status(400).json({ message: "User with this email already exists" });
+    return;
   }
 
   // Hash password
@@ -72,15 +74,15 @@ const updateUser = async (req, res) => {
 // TODO: Improve error handling, wrong ID crashes nodemon..
 const deleteUser = async (req, res) => {
   if (!req?.body.id) {
-    return res.status(400).json({ message: "ID parameter is required" });
+    res.status(400).json({ message: "ID parameter is required" });
+    return;
   }
 
   const user = await Users.findOne({ _id: req.body.id }).exec();
 
   if (!user) {
-    return res
-      .status(204)
-      .json({ message: `No user matches ID ${req.body.id}` });
+    res.status(204).json({ message: `No user matches ID ${req.body.id}` });
+    return;
   }
   const result = await user.deleteOne({ _id: req.body.id });
   res.json(result);
