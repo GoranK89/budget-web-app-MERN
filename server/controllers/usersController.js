@@ -12,12 +12,12 @@ const getUsers = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  try {
-    const user = await Users.findById(req.params.id);
-    res.send(user);
-  } catch (err) {
-    res.status(204).json(err);
-  }
+  const { _id, email } = await Users.findById(req.user.id);
+
+  res.status(200).json({
+    id: _id,
+    email,
+  });
 };
 
 const registerUser = async (req, res) => {
@@ -45,9 +45,12 @@ const registerUser = async (req, res) => {
   });
 
   if (user) {
-    res
-      .status(201)
-      .json({ _id: user.id, email: user.email, password: user.password });
+    res.status(201).json({
+      _id: user.id,
+      email: user.email,
+      password: user.password,
+      token: generateToken(user._id),
+    });
   } else {
     res.status(400).json({ message: "Could not create new user" });
   }
@@ -86,6 +89,11 @@ const deleteUser = async (req, res) => {
   }
   const result = await user.deleteOne({ _id: req.body.id });
   res.json(result);
+};
+
+// Generate JWT
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "10d" });
 };
 
 module.exports = {

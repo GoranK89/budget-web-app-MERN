@@ -24,6 +24,7 @@ const LoginPage = (props) => {
     if (response.ok) {
       props.setLoggedInStatus(true);
     }
+    console.log(response);
   }
 
   const submitHandler = async (e) => {
