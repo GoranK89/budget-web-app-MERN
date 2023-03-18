@@ -7,12 +7,11 @@ const cors = require("cors");
 dotenv.config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 const DB = process.env.DATABASE;
-
 app.use(cors());
 app.use(express.json());
 
 // CONNECTING TO DB
-mongoose.connect(DB).then((con) => {
+mongoose.connect(DB).then(() => {
   console.log("Connected to database");
 });
 

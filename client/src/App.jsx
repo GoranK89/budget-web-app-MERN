@@ -1,18 +1,30 @@
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
-import LoginPage from "./components/LoginPage";
-import Budget from "./components/Budget";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import DashboardPage from "./pages/DashboardPage";
 const App = () => {
   const [loggedIn, setLoggedin] = useState(false);
 
-  const setLoggedInData = (data) => {
+  const setLoggedInState = (data) => {
     setLoggedin(data);
   };
 
   return (
-    <>
-      {!loggedIn && <LoginPage setLoggedInStatus={setLoggedInData} />}
-      {loggedIn && <Budget />}
-    </>
+    <Router>
+      <main>
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              !loggedIn && <LoginPage loggedInState={setLoggedInState} />
+            }
+          />
+          <Route path="/dashboard" element={loggedIn && <DashboardPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </main>
+    </Router>
   );
 };
 
