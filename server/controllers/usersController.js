@@ -10,15 +10,6 @@ const getUsers = async (req, res) => {
   res.status(200).json(users);
 };
 
-const getUser = async (req, res) => {
-  const { _id, email } = await Users.findById(req.user.id);
-
-  res.status(200).json({
-    id: _id,
-    email,
-  });
-};
-
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -91,7 +82,6 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   getUsers,
-  getUser,
   registerUser,
   updateUser,
   deleteUser,

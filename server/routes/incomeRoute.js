@@ -7,7 +7,11 @@ const {
   deleteIncome,
 } = require("../controllers/incomeController");
 
-router.route("/").get(getIncome).post(addIncome);
-router.route("/:id").put(updateIncome).delete(deleteIncome);
+router
+  .route("/")
+  .get(getIncome)
+  .post(addIncome)
+  .patch(updateIncome)
+  .delete(deleteIncome);
 
 module.exports = router;
