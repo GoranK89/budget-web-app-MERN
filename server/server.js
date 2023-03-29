@@ -18,7 +18,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // ROUTES
-app.use("/api/login", require("./routes/authRoute"));
 app.use("/api/users", require("./routes/usersRoute"));
 app.use("/api/income", require("./routes/incomeRoute"));
 

@@ -7,9 +7,7 @@ const {
   deleteIncome,
 } = require("../controllers/incomeController");
 
-const { protect } = require("../middleware/authMiddleware");
-
-router.route("/").get(protect, getIncome).post(protect, addIncome);
-router.route("/:id").put(protect, updateIncome).delete(protect, deleteIncome);
+router.route("/").get(getIncome).post(addIncome);
+router.route("/:id").put(updateIncome).delete(deleteIncome);
 
 module.exports = router;

@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Users = require("../models/usersModel");
 
+//TODO: make this work after backend and frontend routes are set up
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
 

@@ -1,11 +1,10 @@
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Users = require("../models/usersModel");
 
 const getUsers = async (req, res) => {
   const users = await Users.find();
   if (users.length <= 0) {
-    res.status(400).json({ message: "No users found" });
+    return res.status(400).json({ message: "No users found" });
   }
 
   res.status(200).json(users);
@@ -24,14 +23,14 @@ const registerUser = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    res.status(400).json({ message: "No password or email" });
-    return;
+    return res.status(400).json({ message: "No password or email" });
   }
 
   const userExists = await Users.findOne({ email });
   if (userExists) {
-    res.status(409).json({ message: "User with this email already exists" });
-    return;
+    return res
+      .status(409)
+      .json({ message: "User with this email already exists" });
   }
 
   // Hash password
@@ -49,7 +48,6 @@ const registerUser = async (req, res) => {
       _id: user.id,
       email: user.email,
       password: user.password,
-      token: generateToken(user._id),
     });
   } else {
     res.status(400).json({ message: "Could not create new user" });
@@ -74,26 +72,21 @@ const updateUser = async (req, res) => {
   res.json(result);
 };
 
-// TODO: Improve error handling, wrong ID crashes nodemon..
+// TODO: Improve error handling, wrong ID crashes nodemon.. (actually the problem is not adding return statements)
 const deleteUser = async (req, res) => {
   if (!req?.body.id) {
-    res.status(400).json({ message: "ID parameter is required" });
-    return;
+    return res.status(400).json({ message: "ID parameter is required" });
   }
 
   const user = await Users.findOne({ _id: req.body.id }).exec();
 
   if (!user) {
-    res.status(204).json({ message: `No user matches ID ${req.body.id}` });
-    return;
+    return res
+      .status(204)
+      .json({ message: `No user matches ID ${req.body.id}` });
   }
   const result = await user.deleteOne({ _id: req.body.id });
   res.json(result);
-};
-
-// Generate JWT
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "10d" });
 };
 
 module.exports = {
