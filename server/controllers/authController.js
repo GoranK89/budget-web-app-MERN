@@ -19,7 +19,7 @@ const handleLogin = async (req, res) => {
   }
 };
 
-// Generate JWT
+// Generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "10d" });
 };
