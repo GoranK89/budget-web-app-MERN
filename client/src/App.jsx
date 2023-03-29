@@ -15,7 +15,7 @@ const App = () => {
       <main>
         <Routes>
           <Route
-            path="/login"
+            path="/"
             element={
               !loggedIn && <LoginPage loggedInState={setLoggedInState} />
             }

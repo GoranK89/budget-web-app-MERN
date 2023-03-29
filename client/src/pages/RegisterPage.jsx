@@ -33,7 +33,7 @@ const RegisterPage = () => {
     register();
     setEmail("");
     setPassword("");
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -54,7 +54,7 @@ const RegisterPage = () => {
         />
         <button type="submit">Submit</button>
       </form>
-      <Link to="/login">Back to login</Link>
+      <Link to="/">Back to login</Link>
     </section>
   );
 };

@@ -25,13 +25,13 @@ const LoginPage = (props) => {
 
     if (response.ok) {
       props.loggedInState(true);
+      navigate("/dashboard");
     }
   }
 
   const submitHandler = async (e) => {
     e.preventDefault();
     login();
-    navigate("/dashboard");
   };
 
   return (
