@@ -63,7 +63,6 @@ const updateUser = async (req, res) => {
   res.json(result);
 };
 
-// TODO: Improve error handling, wrong ID crashes nodemon.. (actually the problem is not adding return statements)
 const deleteUser = async (req, res) => {
   if (!req?.body.id) {
     return res.status(400).json({ message: "ID parameter is required" });

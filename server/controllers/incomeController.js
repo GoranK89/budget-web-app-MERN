@@ -2,24 +2,32 @@ const Income = require("../models/incomeModel");
 const Users = require("../models/usersModel");
 
 const getIncome = async (req, res) => {
-  const income = await Income.find({ user: req.user.id });
+  const income = await Income.find().lean();
+  if (!income || income.length <= 0) {
+    return res.status(400).json({ message: "No income found" });
+  }
 
   res.status(200).json(income);
 };
 
 const addIncome = async (req, res) => {
-  if (!req.body) {
-    res.status(400).json({ message: "Please add income type and amount" });
-    return;
+  const { user, incomeType, amount } = req.body;
+
+  if (!user || !incomeType || !amount) {
+    return res.status(400).json({ message: "All fields are required" });
   }
 
   const income = await Income.create({
-    user: req.user.id,
-    incomeType: req.body.incomeType,
-    amount: req.body.amount,
+    user,
+    incomeType,
+    amount,
   });
 
-  res.status(200).json(income);
+  if (income) {
+    res.status(201).json({ message: "Income added" });
+  } else {
+    res.status(400).json({ message: "Error adding income" });
+  }
 };
 
 const updateIncome = async (req, res) => {

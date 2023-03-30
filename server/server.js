@@ -18,8 +18,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // ROUTES
-app.use("/api/users", require("./routes/usersRoute"));
-app.use("/api/income", require("./routes/incomeRoute"));
+app.use("/users", require("./routes/usersRoute"));
+app.use("/income", require("./routes/incomeRoute"));
 
 // STARTING SERVER
 mongoose.connection.once("open", () => {
