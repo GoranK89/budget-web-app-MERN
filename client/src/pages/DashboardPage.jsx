@@ -15,7 +15,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:8000/api/users");
+      const response = await fetch("http://localhost:8000/income");
       const jsonData = await response.json();
       setData(jsonData);
     };
@@ -25,13 +25,18 @@ const DashboardPage = () => {
 
   console.log(data);
 
+  //TODO: recognize which user is logged in, incomes are assigned to the user
   async function addIncome() {
-    const response = await fetch("http://localhost:8000/api/income", {
+    const response = await fetch("http://localhost:8000/income", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ incomeType, amount: incomeAmount }),
+      body: JSON.stringify({
+        user: "6415af2d284d85c3c083f6ec",
+        incomeType,
+        amount: incomeAmount,
+      }),
     });
 
     if (response.ok) {
@@ -60,6 +65,15 @@ const DashboardPage = () => {
         />
         <button type="submit">Add income</button>
       </form>
+
+      <h2>All incomes</h2>
+      <ul>
+        {data?.map((income) => (
+          <li key={income._id}>
+            {income.incomeType}: €{income.amount}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };

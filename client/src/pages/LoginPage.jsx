@@ -14,19 +14,10 @@ const LoginPage = (props) => {
     setPassword(e.target.value);
   };
 
+  // TODO: add login functionality/authorization
   async function login() {
-    const response = await fetch("http://localhost:8000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (response.ok) {
-      props.loggedInState(true);
-      navigate("/dashboard");
-    }
+    props.loggedInState(true);
+    navigate("/dashboard");
   }
 
   const submitHandler = async (e) => {

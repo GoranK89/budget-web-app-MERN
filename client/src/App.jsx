@@ -4,12 +4,14 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 const App = () => {
+  //TODO: redux state management
   const [loggedIn, setLoggedin] = useState(false);
 
   const setLoggedInState = (data) => {
     setLoggedin(data);
   };
 
+  // TODO: better routing
   return (
     <Router>
       <main>

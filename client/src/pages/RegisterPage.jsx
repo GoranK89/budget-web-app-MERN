@@ -15,7 +15,7 @@ const RegisterPage = () => {
   };
 
   async function register() {
-    const response = await fetch("http://localhost:8000/api/users", {
+    const response = await fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
