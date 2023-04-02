@@ -1,27 +1,19 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from "react";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import DashboardPage from "./pages/DashboardPage";
-const App = () => {
-  //TODO: redux state management
-  const [loggedIn, setLoggedin] = useState(false);
+import { useSelector } from "react-redux";
 
-  const setLoggedInState = (data) => {
-    setLoggedin(data);
-  };
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
+import DashboardPage from "./components/DashboardPage";
+
+const App = () => {
+  const loggedIn = useSelector((state) => state.login.loggedIn);
 
   // TODO: better routing
   return (
     <Router>
       <main>
         <Routes>
-          <Route
-            path="/"
-            element={
-              !loggedIn && <LoginPage loggedInState={setLoggedInState} />
-            }
-          />
+          <Route path="/" element={!loggedIn && <LoginPage />} />
           <Route path="/dashboard" element={loggedIn && <DashboardPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
