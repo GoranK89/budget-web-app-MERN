@@ -1,13 +1,23 @@
-.login-section {
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+// import scss navbar file
+@import "navbar";
+@import "loginForm";
 
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  // linear gradient shades of very light orange
+  background: linear-gradient(90deg, #f9f9f9 0%, #f9f9f9 100%);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
