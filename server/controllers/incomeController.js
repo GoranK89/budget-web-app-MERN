@@ -11,16 +11,16 @@ const getIncome = async (req, res) => {
 };
 
 const addIncome = async (req, res) => {
-  const { user, incomeType, amount } = req.body;
+  const { user, incomeType, incomeAmount } = req.body;
 
-  if (!user || !incomeType || !amount) {
+  if (!user || !incomeType || !incomeAmount) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
   const income = await Income.create({
     user,
     incomeType,
-    amount,
+    incomeAmount,
   });
 
   if (income) {

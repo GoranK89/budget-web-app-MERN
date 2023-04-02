@@ -12,7 +12,7 @@ const incomeSchema = mongoose.Schema(
       type: String,
       required: [true, "Type of income"],
     },
-    amount: {
+    incomeAmount: {
       type: Number,
       required: [true, "Add ammount"],
     },

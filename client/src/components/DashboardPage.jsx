@@ -1,7 +1,10 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { fetchIncomeData, addIncomeData } from "../store/income-actions";
 
 const DashboardPage = () => {
-  const [data, setData] = useState(null);
+  const dispatch = useDispatch();
+  const income = useSelector((state) => state.income);
   const [incomeType, setIncomeType] = useState("");
   const [incomeAmount, setIncomeAmount] = useState("");
 
@@ -14,39 +17,12 @@ const DashboardPage = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("http://localhost:8000/income");
-      const jsonData = await response.json();
-      setData(jsonData);
-    };
-
-    fetchData();
-  }, []);
-
-  console.log(data);
-
-  //TODO: recognize which user is logged in, incomes are assigned to the user
-  async function addIncome() {
-    const response = await fetch("http://localhost:8000/income", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: "6415af2d284d85c3c083f6ec",
-        incomeType,
-        amount: incomeAmount,
-      }),
-    });
-
-    if (response.ok) {
-      console.log("income added");
-    }
-  }
+    dispatch(fetchIncomeData());
+  }, [dispatch]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    addIncome();
+    dispatch(addIncomeData({ incomeType, incomeAmount }));
   };
 
   return (
@@ -68,9 +44,9 @@ const DashboardPage = () => {
 
       <h2>All incomes</h2>
       <ul>
-        {data?.map((income) => (
+        {income?.map((income) => (
           <li key={income._id}>
-            {income.incomeType}: €{income.amount}
+            {income.incomeType}: €{income.incomeAmount}
           </li>
         ))}
       </ul>
