@@ -49,6 +49,8 @@ export const addIncomeData = (income) => {
 
     try {
       await sendRequest();
+      //NOTE: when new income is added, the incomes are fetched again
+      dispatch(fetchIncomeData());
     } catch (error) {
       console.log(error);
     }
