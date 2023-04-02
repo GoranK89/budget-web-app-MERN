@@ -18,7 +18,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     dispatch(fetchIncomeData());
-  }, [dispatch]);
+  }, [dispatch, income]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -26,17 +26,17 @@ const DashboardPage = () => {
   };
 
   return (
-    <section>
+    <section className="section-dashboard">
       <h1>Dashboard</h1>
       <form onSubmit={submitHandler}>
         <input
           type="text"
-          placeholder="income type"
+          placeholder="Income type"
           onChange={incomeTypeHandler}
         />
         <input
           type="number"
-          placeholder="income amount"
+          placeholder="Income amount"
           onChange={incomeAmountHandler}
         />
         <button type="submit">Add income</button>

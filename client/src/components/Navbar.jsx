@@ -6,6 +6,9 @@ const Navbar = () => {
       <div className="navbar__logoWrapper">
         <img src={logo} alt="logo" />
       </div>
+
+      <p>MANAGE YOUR FINANCES IN ONE PLACE</p>
+
       <ul className="navbar__navlinks">
         <li>
           <a href="#">LINK 1</a>

@@ -37,7 +37,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <section>
+    <section className="section-register">
       <h1>Register your account</h1>
       <form onSubmit={submitHandler}>
         <input
@@ -53,8 +53,8 @@ const RegisterPage = () => {
           value={password}
         />
         <button type="submit">Submit</button>
+        <Link to="/">Back to login</Link>
       </form>
-      <Link to="/">Back to login</Link>
     </section>
   );
 };
