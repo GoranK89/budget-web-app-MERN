@@ -16,9 +16,10 @@ const DashboardPage = () => {
     setIncomeAmount(e.target.value);
   };
 
+  // BUG: if no income exists in mongo, the added incomes are not displayed. If page is refreshed, they are displayed.
   useEffect(() => {
     dispatch(fetchIncomeData());
-  }, [dispatch, income]);
+  }, [dispatch]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
