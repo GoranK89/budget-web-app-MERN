@@ -16,6 +16,12 @@
 
   &__navlinks {
     display: flex;
+    align-items: center;
+
+    img {
+      width: 30px;
+      cursor: pointer;
+    }
 
     a {
       margin: 0 1rem;

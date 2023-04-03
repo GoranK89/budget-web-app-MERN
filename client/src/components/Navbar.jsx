@@ -1,4 +1,5 @@
 import logo from "/images/logo.png";
+import ProfileIcon from "/icons/icon-profile3.png";
 
 const Navbar = () => {
   return (
@@ -17,7 +18,9 @@ const Navbar = () => {
           <a href="#">LINK 2</a>
         </li>
         <li>
-          <a href="#">LINK 3</a>
+          <a href="#">
+            <img src={ProfileIcon} />
+          </a>
         </li>
       </ul>
     </nav>
