@@ -20,6 +20,7 @@ app.use(express.json());
 // ROUTES
 app.use("/users", require("./routes/usersRoute"));
 app.use("/income", require("./routes/incomeRoute"));
+app.use("/auth", require("./routes/authRoute"));
 
 // STARTING SERVER
 mongoose.connection.once("open", () => {

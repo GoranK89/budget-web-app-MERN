@@ -19,7 +19,7 @@ export const fetchIncomeData = () => {
       dispatch(incomeActions.getIncome(incomeData));
     } catch (error) {
       // TODO: send error to an UI slice
-      console.log("Fetchind income data failed");
+      console.log("Fetching income data failed");
     }
   };
 };

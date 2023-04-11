@@ -1,20 +1,28 @@
 import { useSelector, useDispatch } from "react-redux";
 import { loginActions } from "../store/login-slice";
-
-import { Link, useNavigate } from "react-router-dom";
+import { authorizeLogin } from "../store/login-actions";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import HeroImg from "/images/landing1.jpg";
 
 const LoginPage = () => {
+  const loginState = useSelector((state) => state.login);
   const dispatch = useDispatch();
-  const loginSlice = useSelector((state) => state.login);
   const navigate = useNavigate();
 
-  // TODO: send login request to server
+  const emailHandler = (e) => {
+    dispatch(loginActions.setEmail(e.target.value));
+  };
+
+  const passwordHandler = (e) => {
+    dispatch(loginActions.setPassword(e.target.value));
+  };
+
+  // TODO: send login request to server (move this to login actions)
   const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(loginActions.login());
-    navigate("/dashboard");
+    dispatch(authorizeLogin(loginState.email, loginState.password));
+    if (loginState.loggedIn) navigate("/dashboard");
   };
 
   return (
@@ -23,8 +31,18 @@ const LoginPage = () => {
       <div className="form-wrapper">
         <h1>Login</h1>
         <form className="form-wrapper__login-form" onSubmit={submitHandler}>
-          <input placeholder="Email" type="text" />
-          <input placeholder="Password" type="password" />
+          <input
+            placeholder="Email"
+            type="text"
+            value={loginState.email}
+            onChange={emailHandler}
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            value={loginState.password}
+            onChange={passwordHandler}
+          />
           <button type="submit">Login</button>
         </form>
         <p>
