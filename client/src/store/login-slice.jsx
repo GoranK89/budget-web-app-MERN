@@ -25,10 +25,10 @@ const loginSlice = createSlice({
       state.token = action.payload.token;
       state.userId = action.payload.userId;
     },
-    loginFailed(state) {
+    logout(state) {
       state.loggedIn = false;
-      state.email = "";
-      state.password = "";
+      state.token = "";
+      state.userId = "";
     },
   },
 });

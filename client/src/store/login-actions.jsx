@@ -15,7 +15,6 @@ export const authorizeLogin = (email, password) => {
       });
 
       if (!response.ok) {
-        dispatch(loginActions.loginFailed());
         throw new Error("Login failed");
       }
 
