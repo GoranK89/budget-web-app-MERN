@@ -1,12 +1,15 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginActions } from "../store/login-slice";
 import { authorizeLogin } from "../store/login-actions";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import HeroImg from "/images/landing1.jpg";
 
 const LoginPage = () => {
-  const loginState = useSelector((state) => state.login);
+  const { loggedIn, email, password, token, userId } = useSelector(
+    (state) => state.login
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,12 +21,14 @@ const LoginPage = () => {
     dispatch(loginActions.setPassword(e.target.value));
   };
 
-  // TODO: send login request to server (move this to login actions)
   const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(authorizeLogin(loginState.email, loginState.password));
-    if (loginState.loggedIn) navigate("/dashboard");
+    dispatch(authorizeLogin(email, password));
   };
+
+  useEffect(() => {
+    if (loggedIn) navigate("/dashboard");
+  }, [loggedIn, navigate]);
 
   return (
     <section className="login-section">
@@ -34,13 +39,13 @@ const LoginPage = () => {
           <input
             placeholder="Email"
             type="text"
-            value={loginState.email}
+            value={email}
             onChange={emailHandler}
           />
           <input
             placeholder="Password"
             type="password"
-            value={loginState.password}
+            value={password}
             onChange={passwordHandler}
           />
           <button type="submit">Login</button>

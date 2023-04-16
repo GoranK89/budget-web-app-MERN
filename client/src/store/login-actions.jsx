@@ -2,27 +2,38 @@ import { loginActions } from "./login-slice";
 
 export const authorizeLogin = (email, password) => {
   return async (dispatch) => {
-    const response = await fetch("http://localhost:8000/auth", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+    const loginRequest = async () => {
+      const response = await fetch("http://localhost:8000/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-    const responseData = await response.json();
+      if (!response.ok) {
+        dispatch(loginActions.loginFailed());
+        throw new Error("Login failed");
+      }
 
-    if (!response.ok) {
-      throw new Error(responseData.message);
+      const data = await response.json();
+
+      return data;
+    };
+
+    try {
+      const responseData = await loginRequest();
+      dispatch(
+        loginActions.loginSuccess({
+          token: responseData.token,
+          userId: responseData.userId,
+        })
+      );
+    } catch (err) {
+      console.log(err);
     }
-    dispatch(
-      loginActions.loginSuccess({
-        token: responseData.token,
-        userId: responseData._id,
-      })
-    );
   };
 };

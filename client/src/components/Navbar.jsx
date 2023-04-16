@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import logo from "/images/logo.png";
 import ProfileIcon from "/icons/icon-profile3.png";
 
@@ -12,15 +14,15 @@ const Navbar = () => {
 
       <ul className="navbar__navlinks">
         <li>
-          <a href="#">LINK 1</a>
+          <Link to="/register">Register</Link>
         </li>
         <li>
-          <a href="#">LINK 2</a>
+          <Link to="/">Login</Link>
         </li>
         <li>
-          <a href="#">
+          <Link to="#">
             <img src={ProfileIcon} />
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
