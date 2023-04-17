@@ -24,9 +24,6 @@ const Navbar = () => {
 
       <ul className="navbar__navlinks">
         <li>
-          <Link to="/register">Register</Link>
-        </li>
-        <li>
           {loggedIn && (
             <Link onClick={logoutHandler} to="/">
               Logout

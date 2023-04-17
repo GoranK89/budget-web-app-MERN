@@ -24,7 +24,6 @@ export const fetchIncomeData = () => {
   };
 };
 
-//TODO: recognize which user is logged in, incomes are assigned to the user
 export const addIncomeData = (income) => {
   return async (dispatch) => {
     const sendRequest = async () => {
@@ -34,7 +33,7 @@ export const addIncomeData = (income) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user: "6415af2d284d85c3c083f6ec",
+          user: income.userId,
           incomeType: income.incomeType,
           incomeAmount: income.incomeAmount,
         }),

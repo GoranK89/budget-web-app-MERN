@@ -1,3 +1,52 @@
+.dashboard-page {
+  display: flex;
+  justify-content: space-between;
+  height: 85vh;
+
+  .section-menu {
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgba(170, 172, 27, 0.322);
+    padding: 1rem;
+
+    .balance-box {
+      background-color: #cccccc54;
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+  }
+
+  .section-overview {
+    display: flex;
+    align-items: start;
+    gap: 2rem;
+
+    .income-box {
+      background-color: lightgreen;
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+    .expenses-box {
+      background-color: lightcoral;
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+  }
+
+  .section-history {
+    background-color: lightyellow;
+    padding: 1rem;
+
+    .section-title {
+    }
+
+    .history-box {
+    }
+  }
+}
+
+// placeholder style
 .section-dashboard {
   h1 {
     font-size: 2.5rem;

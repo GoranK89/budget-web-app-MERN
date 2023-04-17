@@ -1,12 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchIncomeData, addIncomeData } from "../store/income-actions";
+import { fetchIncomeData, addIncomeData } from "../../store/income-actions";
 
-const DashboardPage = () => {
+const AddIncome = () => {
   const dispatch = useDispatch();
   const income = useSelector((state) => state.income);
+  const userId = useSelector((state) => state.login.userId);
   const [incomeType, setIncomeType] = useState("");
   const [incomeAmount, setIncomeAmount] = useState("");
+
+  //NOTE: rework backend and income actions so only users incomes are fetched
+  const userIncome = income.filter((income) => income.user === userId);
 
   const incomeTypeHandler = (e) => {
     setIncomeType(e.target.value);
@@ -22,7 +26,7 @@ const DashboardPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(addIncomeData({ incomeType, incomeAmount }));
+    dispatch(addIncomeData({ incomeType, incomeAmount, userId }));
   };
 
   return (
@@ -42,9 +46,9 @@ const DashboardPage = () => {
         <button type="submit">Add income</button>
       </form>
 
-      <h2>All incomes</h2>
+      <h2>Your incomes</h2>
       <ul>
-        {income?.map((income) => (
+        {userIncome?.map((income) => (
           <li key={income._id}>
             {income.incomeType}: €{income.incomeAmount}
           </li>
@@ -54,4 +58,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default AddIncome;

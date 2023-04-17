@@ -28,7 +28,7 @@ export const authorizeLogin = (email, password) => {
       dispatch(
         loginActions.loginSuccess({
           token: responseData.token,
-          userId: responseData.userId,
+          userId: responseData._id,
         })
       );
     } catch (err) {

@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
-
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
-import DashboardPage from "./components/DashboardPage";
+import DashboardPage from "./components/dashboard/DashboardPage";
 
 const App = () => {
   return (
