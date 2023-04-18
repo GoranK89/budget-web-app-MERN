@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { loginActions } from "../store/login-slice";
 
 import logo from "/images/logo.png";
@@ -7,6 +7,7 @@ import ProfileIcon from "/icons/icon-profile3.png";
 
 const Navbar = () => {
   const loggedIn = useSelector((state) => state.login.loggedIn);
+  const userEmail = useSelector((state) => state.login.email);
 
   const logoutHandler = () => {
     dispatch(loginActions.logout());
@@ -20,7 +21,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <p>MANAGE YOUR FINANCES IN ONE PLACE</p>
+      {loggedIn && <p>Logged in with email: {userEmail}</p>}
 
       <ul className="navbar__navlinks">
         <li>

@@ -6,14 +6,59 @@
   .section-menu {
     display: flex;
     flex-direction: column;
-
-    background-color: rgba(170, 172, 27, 0.322);
+    gap: 2rem;
+    background: linear-gradient(
+      180deg,
+      rgba(126, 43, 93, 1) 0%,
+      rgba(126, 43, 93, 0.9) 10%,
+      rgba(126, 43, 93, 0.7) 30%,
+      rgba(126, 43, 93, 0.6) 50%
+    );
+    color: #fff;
     padding: 1rem;
 
     .balance-box {
-      background-color: #cccccc54;
-      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      margin-top: 2rem;
+      padding: 1.8rem 1.5rem;
       border-radius: 1rem;
+
+      font-size: 1.8rem;
+      text-align: center;
+
+      p {
+        margin-top: 0.4rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .menu-box {
+      display: flex;
+      flex-direction: column;
+
+      &__item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.8rem 1.5rem;
+        border-radius: 1rem;
+        transition: 0.25s;
+
+        a {
+          color: #fff;
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+          cursor: pointer;
+        }
+
+        img {
+          width: 40px;
+        }
+      }
     }
   }
 
@@ -35,7 +80,7 @@
   }
 
   .section-history {
-    background-color: lightyellow;
+    background-color: #f2b792;
     padding: 1rem;
 
     .section-title {

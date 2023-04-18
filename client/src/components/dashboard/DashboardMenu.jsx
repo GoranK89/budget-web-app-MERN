@@ -1,3 +1,9 @@
+import IconDashboard from "/icons/dashboard.png";
+import IconPiggyBank from "/icons/piggy-bank.png";
+import IconBrokenPiggyBank from "/icons/broke-piggy-bank.png";
+import IconChart from "/icons/combo-chart.png";
+import IconInvestment from "/icons/investment.png";
+
 const DashboardMenu = () => {
   return (
     <section className="section-menu">
@@ -7,24 +13,24 @@ const DashboardMenu = () => {
       </div>
       <div className="menu-box">
         <div className="menu-box__item">
-          <img />
-          <p>Dashboard</p>
+          <img src={IconDashboard} />
+          <a href="#">Dashboard</a>
         </div>
         <div className="menu-box__item">
-          <img />
-          <p>Income</p>
+          <img src={IconPiggyBank} />
+          <a href="#">Income</a>
         </div>
         <div className="menu-box__item">
-          <img />
-          <p>Expenses</p>
+          <img src={IconBrokenPiggyBank} />
+          <a href="#">Expenses</a>
         </div>
         <div className="menu-box__item">
-          <img />
-          <p>Charts</p>
+          <img src={IconChart} />
+          <a href="#">Charts</a>
         </div>
         <div className="menu-box__item">
-          <img />
-          <p>Investments</p>
+          <img src={IconInvestment} />
+          <a href="#">Investments</a>
         </div>
       </div>
     </section>
