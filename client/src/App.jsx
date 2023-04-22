@@ -1,13 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { useSelector } from "react-redux";
+import Navbar from "./components/navbar/Navbar";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import DashboardPage from "./components/dashboard/DashboardPage";
 
 const App = () => {
+  const isLoggedIn = useSelector((state) => state.login.loggedIn);
   return (
     <>
-      <Navbar />
+      {!isLoggedIn && <Navbar />}
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

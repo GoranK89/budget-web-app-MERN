@@ -30,6 +30,7 @@ const DashboardMenu = () => {
       <div className="menu-box">
         {MENU_ITEMS.map((item) => (
           <div
+            key={item.id}
             className={`menu-box__item ${active === item.id ? "active" : ""}`}
             onClick={handleActive}
           >

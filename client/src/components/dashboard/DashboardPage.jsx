@@ -1,12 +1,12 @@
 import DashboardMenu from "./DashboardMenu";
-import DashboardOverview from "./DashboardOverview";
+import DashboardContent from "./DashboardContent";
 import DashboardHistory from "./DashboardHistory";
 
 const DashboardPage = () => {
   return (
     <main className="dashboard-page">
       <DashboardMenu />
-      <DashboardOverview />
+      <DashboardContent />
       <DashboardHistory />
     </main>
   );
