@@ -1,6 +1,6 @@
-import Logo from "../navbar/Logo";
+import Logo from "../../navbar/Logo";
 
-const DashboardContent = () => {
+const Dashboard = () => {
   return (
     <section className="section-overview">
       <Logo />
@@ -18,4 +18,4 @@ const DashboardContent = () => {
   );
 };
 
-export default DashboardContent;
+export default Dashboard;

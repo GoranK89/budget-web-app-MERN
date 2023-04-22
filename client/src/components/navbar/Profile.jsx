@@ -20,7 +20,7 @@ const Profile = () => {
           </Link>
         )}
       </div>
-      {loggedIn && <p>User:{userEmail}</p>}
+      {loggedIn && <p>{userEmail}</p>}
       <div>
         <Link to="#">
           <img src={ProfileIcon} />

@@ -14,12 +14,13 @@ const MENU_ITEMS = [
   { id: "investments", label: "Investments", icon: IconInvestment },
 ];
 
-const DashboardMenu = () => {
+const DashboardMenu = (props) => {
   const [active, setActive] = useState("dashboard");
 
   const handleActive = (menuItem) => {
     setActive(menuItem.target.innerText.toLowerCase());
   };
+  props.onPageChange(active);
 
   return (
     <section className="section-menu">
