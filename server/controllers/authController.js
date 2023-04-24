@@ -2,13 +2,12 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Users = require("../models/usersModel");
 
-//TODO: make this work after backend and frontend routes are set up
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await Users.findOne({ email });
 
-  if (user && (await bcrypt.compare(password, user.password))) {
+  if (user && bcrypt.compare(password, user.password)) {
     res.json({
       _id: user.id,
       email: user.email,

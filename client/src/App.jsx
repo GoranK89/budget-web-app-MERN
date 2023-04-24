@@ -6,10 +6,10 @@ import RegisterPage from "./components/RegisterPage";
 import DashboardMainPage from "./components/dashboard/DashboardMainPage";
 
 const App = () => {
-  const isLoggedIn = useSelector((state) => state.login.loggedIn);
+  const token = useSelector((state) => state.login.token);
   return (
     <>
-      {!isLoggedIn && <Navbar />}
+      {!token && <Navbar />}
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

@@ -27,8 +27,10 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    if (loggedIn) navigate("/dashboard");
-  }, [loggedIn, navigate]);
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [token, navigate]);
 
   return (
     <section className="login-section">
