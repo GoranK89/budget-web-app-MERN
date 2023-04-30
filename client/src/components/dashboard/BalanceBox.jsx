@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { memo, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchBalance,
@@ -36,7 +36,7 @@ const BalanceBox = () => {
     setAddingBalance(!addingBalance);
   };
 
-  const BalanceButton = () => {
+  const BalanceButton = memo(() => {
     if (balance !== null && !updatingBalance) {
       return <button onClick={updatingBalanceState}>Update Balance</button>;
     } else if (balance !== null && updatingBalance) {
@@ -46,7 +46,7 @@ const BalanceBox = () => {
     } else if (balance === null && !addingBalance) {
       return <button onClick={addingBalanceState}>Add Balance</button>;
     }
-  };
+  });
 
   const balanceInputHandler = (event) => {
     setBalanceInput(event.target.value);
@@ -67,7 +67,7 @@ const BalanceBox = () => {
     <div className="balance-box">
       {BalanceField}
       <p>Current balance</p>
-      {BalanceButton()}
+      <BalanceButton />
     </div>
   );
 };
