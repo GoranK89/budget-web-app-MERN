@@ -4,8 +4,9 @@ const router = express.Router();
 const {
   getBalance,
   createBalance,
+  updateBalance,
 } = require("../controllers/balanceController");
 
-router.route("/").post(createBalance);
-router.get("/:user", getBalance);
+router.route("/").post(createBalance).patch(updateBalance);
+router.route("/:user").get(getBalance);
 module.exports = router;

@@ -39,7 +39,10 @@ const DashboardMainPage = () => {
 
   return (
     <main className="dashboard-page">
-      <DashboardMenu onPageChange={handlePageChange} />
+      <DashboardMenu
+        onPageChange={handlePageChange}
+        selectedPage={selectedPage}
+      />
       {pageComponent}
       <DashboardHistory />
     </main>

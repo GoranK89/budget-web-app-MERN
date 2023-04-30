@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialBalanceState = {
-  balance: 0,
+  balance: null,
 };
 
 const balanceSlice = createSlice({

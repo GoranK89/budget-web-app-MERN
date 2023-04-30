@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBalance } from "../../store/balance-actions";
+import { useState } from "react";
+
+import BalanceBox from "./BalanceBox";
 
 import IconDashboard from "/icons/dashboard.png";
 import IconPiggyBank from "/icons/piggy-bank.png";
@@ -17,31 +17,22 @@ const MENU_ITEMS = [
 ];
 
 const DashboardMenu = (props) => {
-  const dispatch = useDispatch();
-  const balance = useSelector((state) => state.balance.balance);
-  const user = useSelector((state) => state.login.userId);
-  const [active, setActive] = useState("dashboard");
-
-  const handleActive = (menuItem) => {
-    setActive(menuItem.target.innerText.toLowerCase());
+  const handleActive = (event) => {
+    const menuItem = event.target.closest(".menu-box__item");
+    if (menuItem) props.onPageChange(menuItem.id);
   };
-  props.onPageChange(active);
-
-  useEffect(() => {
-    dispatch(fetchBalance(user));
-  }, [balance]);
 
   return (
     <section className="section-menu">
-      <div className="balance-box">
-        <span>€{balance}</span>
-        <p>Current balance</p>
-      </div>
+      <BalanceBox />
       <div className="menu-box">
         {MENU_ITEMS.map((item) => (
           <div
             key={item.id}
-            className={`menu-box__item ${active === item.id ? "active" : ""}`}
+            id={item.id}
+            className={`menu-box__item ${
+              props.selectedPage === item.id ? "active" : ""
+            }`}
             onClick={handleActive}
           >
             <img src={item.icon} />

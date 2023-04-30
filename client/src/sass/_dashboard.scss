@@ -32,6 +32,44 @@
         font-weight: 700;
         margin-bottom: 0.5rem;
       }
+
+      input {
+        width: 100%;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 0.4rem;
+        outline: none;
+        text-align: center;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+
+        &::placeholder {
+          color: #ffffff73;
+        }
+      }
+
+      // remove the arrows from the input number
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      button {
+        cursor: pointer;
+        background-color: #dda697;
+        color: inherit;
+        border-radius: 0.4rem;
+        border: none;
+        padding: 0.5rem 0.8rem;
+
+        &:hover {
+          background-color: #f2b791;
+          transform: scale(1.01);
+          transition: all 0.25s ease-in;
+        }
+      }
     }
 
     .menu-box {
