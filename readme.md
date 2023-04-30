@@ -1,4 +1,4 @@
-![Design preview for the Budget app](/images/preview/preview.jpg)
+![Design preview for the Budget app](/client/images/preview/preview.jpg)
 
 # Budget Manager App
 
