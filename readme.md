@@ -42,9 +42,9 @@ Note: This project is still under development and it has bugs and incomplete fea
 4. Set up the environment variables:
    - Create a `.env` file in the server directory
    - Add the following variables to the file:
-   - PORT=`the port number for the server`
-   - DATABASE=`the URI for your MongoDB database`
-   - JWT_SECRET=`a secret key for JSON Web Tokens`
+   1. PORT=`the port number for the server`
+   2. DATABASE=`the URI for your MongoDB database`
+   3. JWT_SECRET=`a secret key for JSON Web Tokens`
 5. Start the server: `npm run dev` in the server directory
 6. Start the frontend: `npm run dev` in the client directory
 7. Open the application in your browser
