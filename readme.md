@@ -1,3 +1,5 @@
+![Design preview for the Budget app](/images/preview/preview.jpg)
+
 # Budget Manager App
 
 This is a full-stack web application that allows users to track their income and expenses. The application has two main parts: a backend built with Node.js and Express.js, and a frontend built with React.
