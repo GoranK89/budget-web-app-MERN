@@ -37,7 +37,7 @@ const LoginPage = () => {
       <img src={HeroImg} alt="hero" />
       <div className="form-wrapper">
         <h1>Login</h1>
-        <form className="form-wrapper__login-form" onSubmit={submitHandler}>
+        <form onSubmit={submitHandler}>
           <input
             placeholder="Email"
             type="text"
@@ -50,7 +50,9 @@ const LoginPage = () => {
             value={password}
             onChange={passwordHandler}
           />
-          <button type="submit">Login</button>
+          <button className="btn-orange" type="submit">
+            Login
+          </button>
         </form>
         <p>
           Don't have an account? <Link to="/register">Register here</Link>

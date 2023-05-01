@@ -1,0 +1,24 @@
+.section-register {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  form {
+    @include form-style;
+    margin: 0 auto;
+
+    input {
+      @include input-style;
+      background-color: $color-primary-dark;
+    }
+  }
+}

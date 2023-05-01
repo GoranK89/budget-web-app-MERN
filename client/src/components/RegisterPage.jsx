@@ -52,7 +52,9 @@ const RegisterPage = () => {
           onChange={passwordHandler}
           value={password}
         />
-        <button type="submit">Submit</button>
+        <button className="btn-orange" type="submit">
+          Submit
+        </button>
         <Link to="/">Back to login</Link>
       </form>
     </section>

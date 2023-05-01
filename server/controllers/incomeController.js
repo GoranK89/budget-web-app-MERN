@@ -2,7 +2,9 @@ const Income = require("../models/incomeModel");
 const Users = require("../models/usersModel");
 
 const getIncome = async (req, res) => {
-  const income = await Income.find().lean();
+  const userId = req.params.user;
+
+  const income = await Income.find({ user: userId }).lean();
   if (!income || income.length <= 0) {
     return res.status(400).json({ message: "No income found" });
   }

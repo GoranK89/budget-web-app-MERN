@@ -10,7 +10,7 @@ const incomeSlice = createSlice({
       return action.payload;
     },
     addIncome(state, action) {
-      state.push(action.payload);
+      // state.push(action.payload);
     },
   },
 });

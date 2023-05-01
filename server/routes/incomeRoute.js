@@ -8,7 +8,7 @@ const {
 } = require("../controllers/incomeController");
 
 router
-  .route("/")
+  .route("/:user")
   .get(getIncome)
   .post(addIncome)
   .patch(updateIncome)

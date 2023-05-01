@@ -1,0 +1,38 @@
+.login-section {
+  padding: 0 2rem;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7rem;
+
+  img {
+    width: 40%;
+    border-radius: 10px;
+
+    animation: wobble 2s ease-in-out;
+  }
+
+  .form-wrapper {
+    animation: slideInFromRight 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 5rem 2rem;
+    box-shadow: 0 20px 60px 1px $color-primary-dark-2;
+
+    h1 {
+      font-size: 2.8rem;
+      text-transform: uppercase;
+    }
+
+    form {
+      @include form-style;
+
+      input {
+        @include input-style;
+        background-color: $color-primary-dark;
+      }
+    }
+  }
+}

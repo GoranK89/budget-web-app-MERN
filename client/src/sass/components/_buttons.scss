@@ -1,0 +1,12 @@
+.btn-orange {
+  @include square-btn-style;
+  background-color: $color-primary;
+  color: $color-white;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.btn-round {
+  @include round-btn-style;
+}

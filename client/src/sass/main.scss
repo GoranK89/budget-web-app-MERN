@@ -1,24 +1,19 @@
 // import scss navbar file
-@import "navbar";
-@import "loginForm";
-@import "registerForm";
-@import "dashboard";
+@import "base/reset";
+@import "./base/typography";
+@import "./base/utilities";
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import "./abstract/variables";
+@import "./abstract/mixins";
+@import "./abstract/functions";
 
-body {
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(90deg, #f9f9f9 0%, #f9f9f9 100%);
-}
+@import "./animations/animations";
 
-ul {
-  list-style: none;
-}
+@import "./components/navbar";
+@import "./components/buttons";
 
-a:link {
-  text-decoration: none;
-}
+@import "./layout/grid";
+
+@import "./pages/loginPage";
+@import "./pages/registerPage";
+@import "./pages/dashboard";

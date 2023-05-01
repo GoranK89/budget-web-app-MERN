@@ -1,16 +1,15 @@
 import { incomeActions } from "./income-slice";
 
-export const fetchIncomeData = () => {
+export const fetchIncomeData = (user) => {
   return async (dispatch) => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:8000/income");
+      const response = await fetch(`http://localhost:8000/income/${user}`);
 
       if (!response.ok) {
         throw new Error("Could not fetch income data!");
       }
 
       const data = await response.json();
-
       return data;
     };
 
