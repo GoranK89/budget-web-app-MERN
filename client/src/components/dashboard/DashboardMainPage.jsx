@@ -3,11 +3,13 @@ import { useState } from "react";
 import DashboardMenu from "./DashboardMenu";
 import DashboardHistory from "./DashboardHistory";
 
-import Dashboard from "./menuPages/Dashboard";
+import Dashboard from "./menuPages/dashboard/Dashboard";
 import Income from "./menuPages/Income";
 import Expenses from "./menuPages/Expenses";
 import Charts from "./menuPages/Charts";
 import Investments from "./menuPages/Investments";
+
+import Logo from ".././navbar/Logo";
 
 const DashboardMainPage = () => {
   const [selectedPage, setSelectedPage] = useState("dashboard");
@@ -43,6 +45,9 @@ const DashboardMainPage = () => {
         onPageChange={handlePageChange}
         selectedPage={selectedPage}
       />
+      <div className="logo-box">
+        <Logo />
+      </div>
       {pageComponent}
       <DashboardHistory />
     </main>
