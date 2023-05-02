@@ -2,6 +2,7 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addIncomeData } from "../../store/income-actions";
+import { addExpenseData } from "../../store/expense-actions";
 
 const Modal = (props) => {
   const dispatch = useDispatch();
@@ -40,7 +41,13 @@ const Modal = (props) => {
   };
   const handleAddExpense = (e) => {
     e.preventDefault();
-    console.log("Add expense");
+    dispatch(
+      addExpenseData({
+        userId: user,
+        expenseType: category,
+        expenseAmount: amount,
+      })
+    );
   };
 
   if (!props.open) return null;

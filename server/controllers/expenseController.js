@@ -4,7 +4,7 @@ const Users = require("../models/usersModel");
 const getExpense = async (req, res) => {
   const userId = req.params.user;
 
-  const expense = await Income.find({ user: userId }).lean();
+  const expense = await Expense.find({ user: userId }).lean();
   if (!expense || expense.length <= 0) {
     return res.status(400).json({ message: "No expense found" });
   }
