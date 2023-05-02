@@ -21,6 +21,7 @@ app.use(express.json());
 app.use("/users", require("./routes/usersRoute"));
 app.use("/auth", require("./routes/authRoute"));
 app.use("/income", require("./routes/incomeRoute"));
+app.use("/expense", require("./routes/expenseRoute"));
 app.use("/balance", require("./routes/balanceRoute"));
 
 // STARTING SERVER
