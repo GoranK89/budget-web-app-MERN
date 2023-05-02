@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import BalanceBox from "./BalanceBox";
 
 import IconDashboard from "/icons/dashboard.png";

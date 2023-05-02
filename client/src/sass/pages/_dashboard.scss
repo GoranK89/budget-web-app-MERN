@@ -1,4 +1,5 @@
 .dashboard-page {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   grid-template-rows: 1fr 6fr;
@@ -9,6 +10,13 @@
     grid-row: 1;
     align-self: center;
     justify-self: center;
+  }
+
+  .btn-add-transaction {
+    position: absolute;
+    right: 50%;
+    transform: translate(50%, 0);
+    bottom: 5%;
   }
 
   .section-menu {

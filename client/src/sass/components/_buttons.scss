@@ -7,6 +7,19 @@
   font-weight: 700;
 }
 
+.btn-green {
+  @include square-btn-style;
+  background-color: $color-secondary;
+  color: $color-white;
+}
+
+.btn-red {
+  @include square-btn-style;
+  background-color: #c53a3a;
+  color: $color-white;
+}
+
 .btn-round {
   @include round-btn-style;
+  z-index: 100;
 }

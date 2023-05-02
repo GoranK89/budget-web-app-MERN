@@ -7,7 +7,6 @@ const ExpenseBox = () => {
         <span>€500</span>
         <p>+2% Since last month</p>
       </div>
-      <button className="btn-round">+</button>
     </div>
   );
 };
