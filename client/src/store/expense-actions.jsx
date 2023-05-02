@@ -1,4 +1,5 @@
 import { expenseActions } from "./expense-slice";
+import { balanceActions } from "./balance-slice";
 
 export const fetchExpenseData = (user) => {
   return async (dispatch) => {
@@ -49,6 +50,7 @@ export const addExpenseData = (expense) => {
     try {
       const addedExpense = await sendRequest();
       dispatch(fetchExpenseData(expense.userId));
+      dispatch(balanceActions.setBalance());
     } catch (error) {
       console.log(error);
     }

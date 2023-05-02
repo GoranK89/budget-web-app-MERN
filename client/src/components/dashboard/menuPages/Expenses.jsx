@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 const Expenses = () => {
   const expense = useSelector((state) => state.expense);
-
   return (
     <section className="section-expense">
       <h2>Expense</h2>

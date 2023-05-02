@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialIncomeState = {
-  user: "",
-  incomeType: "",
-  incomeAmount: "",
-};
+const initialIncomeState = [];
 
 const incomeSlice = createSlice({
   name: "income",

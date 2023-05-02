@@ -1,4 +1,5 @@
 import { incomeActions } from "./income-slice";
+import { balanceActions } from "./balance-slice";
 
 export const fetchIncomeData = (user) => {
   return async (dispatch) => {
@@ -49,6 +50,7 @@ export const addIncomeData = (income) => {
     try {
       const addedIncome = await sendRequest();
       dispatch(fetchIncomeData(income.userId));
+      dispatch(balanceActions.setBalance());
     } catch (error) {
       console.log(error);
     }

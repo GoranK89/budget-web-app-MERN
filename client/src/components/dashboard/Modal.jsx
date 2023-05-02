@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addIncomeData } from "../../store/income-actions";
 import { addExpenseData } from "../../store/expense-actions";
 
+import { balanceActions } from "../../store/balance-actions";
+
 const Modal = (props) => {
   const dispatch = useDispatch();
   const [activeSwitcher, setActiveSwitcher] = useState("income");

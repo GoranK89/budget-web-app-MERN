@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialExpenseState = {
-  user: "",
-  expenseType: "",
-  expenseAmount: "",
-};
+const initialExpenseState = [];
 
 const expenseSlice = createSlice({
   name: "expense",
@@ -14,7 +10,7 @@ const expenseSlice = createSlice({
       return action.payload;
     },
     addExpense(state, action) {
-      console.log("income added");
+      console.log("expense added");
     },
   },
 });

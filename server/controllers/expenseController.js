@@ -1,4 +1,5 @@
 const Expense = require("../models/expenseModel");
+const Balance = require("../models/balanceModel");
 const Users = require("../models/usersModel");
 
 const getExpense = async (req, res) => {
@@ -26,6 +27,16 @@ const addExpense = async (req, res) => {
   });
 
   if (expense) {
+    const balance = await Balance.findOne({ user });
+    if (balance) {
+      balance.balance -= expense.expenseAmount;
+      await balance.save();
+    } else {
+      await Balance.create({
+        user,
+        balance: balance.expenseAmount,
+      });
+    }
     res.status(201).json({ message: "Expense added" });
   } else {
     res.status(400).json({ message: "Error adding expense" });

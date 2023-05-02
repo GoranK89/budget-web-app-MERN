@@ -1,4 +1,5 @@
 const Income = require("../models/incomeModel");
+const Balance = require("../models/balanceModel");
 const Users = require("../models/usersModel");
 
 const getIncome = async (req, res) => {
@@ -26,6 +27,16 @@ const addIncome = async (req, res) => {
   });
 
   if (income) {
+    const balance = await Balance.findOne({ user });
+    if (balance) {
+      balance.balance += income.incomeAmount;
+      await balance.save();
+    } else {
+      await Balance.create({
+        user,
+        balance: income.incomeAmount,
+      });
+    }
     res.status(201).json({ message: "Income added" });
   } else {
     res.status(400).json({ message: "Error adding income" });
