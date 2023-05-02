@@ -38,17 +38,17 @@ export const addIncomeData = (income) => {
         }),
       });
 
-      console.log(income);
-
       if (!response.ok) {
         throw new Error("Server response error");
       }
+
+      const data = await response.json();
+      return data;
     };
 
     try {
-      await sendRequest();
-      //NOTE: when new income is added, the incomes are fetched again
-      dispatch(fetchIncomeData());
+      const addedIncome = await sendRequest();
+      dispatch(fetchIncomeData(income.userId));
     } catch (error) {
       console.log(error);
     }

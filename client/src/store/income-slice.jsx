@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialIncomeState = [];
+const initialIncomeState = {
+  user: "",
+  incomeType: "",
+  incomeAmount: "",
+};
 
 const incomeSlice = createSlice({
   name: "income",
@@ -10,7 +14,7 @@ const incomeSlice = createSlice({
       return action.payload;
     },
     addIncome(state, action) {
-      // state.push(action.payload);
+      console.log("income added");
     },
   },
 });

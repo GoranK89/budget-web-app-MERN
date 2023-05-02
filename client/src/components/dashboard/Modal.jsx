@@ -1,8 +1,14 @@
-import { useState } from "react";
 import { createPortal } from "react-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addIncomeData } from "../../store/income-actions";
 
 const Modal = (props) => {
+  const dispatch = useDispatch();
   const [activeSwitcher, setActiveSwitcher] = useState("income");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const user = useSelector((state) => state.login.userId);
 
   const incomeClass = `category-switcher__box ${
     activeSwitcher === "income" ? "active" : ""
@@ -13,6 +19,28 @@ const Modal = (props) => {
 
   const handleSwitcher = (switcher) => {
     setActiveSwitcher(switcher);
+  };
+
+  const amountHandler = (e) => {
+    setAmount(e.target.value);
+  };
+  const categoryHandler = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleAddIncome = (e) => {
+    e.preventDefault();
+    dispatch(
+      addIncomeData({
+        userId: user,
+        incomeType: category,
+        incomeAmount: amount,
+      })
+    );
+  };
+  const handleAddExpense = (e) => {
+    e.preventDefault();
+    console.log("Add expense");
   };
 
   if (!props.open) return null;
@@ -33,13 +61,21 @@ const Modal = (props) => {
           </div>
         </div>
         <form>
-          <input placeholder="Amount" type="number" />
-          <input placeholder="Category" type="text" />
+          <input placeholder="Amount" type="number" onChange={amountHandler} />
+          <input
+            placeholder="Category"
+            type="text"
+            onChange={categoryHandler}
+          />
           {activeSwitcher === "income" && (
-            <button className="btn-green">Add income</button>
+            <button className="btn-green" onClick={handleAddIncome}>
+              Add income
+            </button>
           )}
           {activeSwitcher === "expense" && (
-            <button className="btn-red">Add expense</button>
+            <button className="btn-red" onClick={handleAddExpense}>
+              Add expense
+            </button>
           )}
         </form>
       </div>
